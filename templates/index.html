@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Recommendation System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-3">Book Recommendation System</h1>
+        <form action="/" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="query">Enter a simple query, genre or title:</label>
+                <input type="text" class="form-control" name="query" id="query">
+            </div>
+            <button type="submit" class="btn btn-primary">Get Recommendation</button>
+        </form>
+
+        {% if recommendation %}
+            <div class="recommendation mt-4 border rounded p-3">
+                <h2>{{ recommendation.title }}</h2>
+                <p>By {{ recommendation.author }}</p>
+                {% if recommendation.image %}
+                    <img src="{{ recommendation.image }}" alt="{{ recommendation.title }}" class="img-fluid">
+                {% endif %}
+                {% if recommendation.retail_price %}
+                    <p>Retail Price: {{ recommendation.retail_price }}</p>
+                {% endif %}
+                {% if recommendation.buy_link %}
+                    <a href="{{ recommendation.buy_link }}" target="_blank" class="btn btn-primary">Buy Now</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
