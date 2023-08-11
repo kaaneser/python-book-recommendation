@@ -29,7 +29,14 @@ def get_random_book(books):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
+        query_type = request.form["query_type"]
         query = request.form["query"]
+
+        if query_type == "genre":
+            query = f"+subject:{query}"
+        elif query_type == "title":
+            query = f"+intitle:{query}"
+
         books = get_books(query)
         book = get_random_book(books)
 

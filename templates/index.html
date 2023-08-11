@@ -15,6 +15,12 @@
             <div class="form-group">
                 <label for="query">Enter a simple query, genre or title:</label>
                 <input type="text" class="form-control" name="query" id="query">
+                <label for="query_type">Select Query Type:</label>
+                <select name="query_type" id="query_type" class="form-control">
+                    <option value="simple" selected="true">Simple recommend</option>
+                    <option value="genre">Recommend by Genre</option>
+                    <option value="title">Recommend by Title</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Get Recommendation</button>
         </form>
